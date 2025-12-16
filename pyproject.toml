@@ -4,7 +4,7 @@ build-backend = "uv_build"
 
 [project]
 name = "dj-shop-cart"
-version = "8.0.0a2"
+version = "8.0.0"
 description = "Simple django cart manager for your django projects."
 readme = "README.md"
 requires-python = ">=3.10"
