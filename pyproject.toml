@@ -1,24 +1,23 @@
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["uv_build>=0.9.17,<0.10.0"]
+build-backend = "uv_build"
 
 [project]
 name = "dj-shop-cart"
-version = "8.0.0a1"
+version = "8.0.0a2"
 description = "Simple django cart manager for your django projects."
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
 keywords = ["django", "python", "cart", "shop", "ecommerce"]
-authors = [
-  { name = "Tobi-De", email = "tobidegnon@proton.me" },
-]
+authors = [{ name = "Tobi-De", email = "tobidegnon@proton.me" }]
 classifiers = [
   "Development Status :: 5 - Production/Stable",
   "Programming Language :: Python",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
   "Framework :: Django :: 3.0",
@@ -28,18 +27,19 @@ classifiers = [
   "Framework :: Django :: 4.1",
   "Framework :: Django :: 4.2",
   "Framework :: Django :: 5.0",
+  "Framework :: Django :: 5.2",
   "Intended Audience :: Developers",
   "Natural Language :: English",
 ]
-dependencies = ["Django>=3", "attrs>=23.2.0"]
+dependencies = ["Django>=5.2", "attrs>=23.2.0"]
 
 [project.urls]
 Documentation = "https://github.com/Tobi-De/dj_shop_cart#readme"
 Issues = "https://github.com/Tobi-De/dj_shop_cart/issues"
 Source = "https://github.com/Tobi-De/dj_shop_cart"
 
-[tool.hatch.envs.default]
-dependencies = [
+[dependency-groups]
+dev = [
   "pytest",
   "pytest-django",
   "mypy",
@@ -49,23 +49,9 @@ dependencies = [
   "ipython",
   "redis",
   "hiredis",
-  "pytest-pretty"
+  "pytest-pretty",
 ]
-
-[tool.hatch.envs.docs]
-dependencies = [
-  "shibuya",
-  "myst-parser",
-  "sphinx-autobuild",
-  "sphinx-design",
-]
-
-[tool.hatch.envs.types]
-extra-dependencies = [
-  "mypy>=1.0.0",
-]
-[tool.hatch.envs.types.scripts]
-check = "mypy --install-types --non-interactive {args:dj_shop_cart tests}"
+docs = ["shibuya", "myst-parser", "sphinx-autobuild", "sphinx-design"]
 
 [tool.coverage.run]
 source_pkgs = ["dj_shop_cart", "tests"]
@@ -77,11 +63,7 @@ dj_shop_cart = ["dj_shop_cart"]
 tests = ["tests"]
 
 [tool.coverage.report]
-exclude_lines = [
-  "no cov",
-  "if __name__ == .__main__.:",
-  "if TYPE_CHECKING:",
-]
+exclude_lines = ["no cov", "if __name__ == .__main__.:", "if TYPE_CHECKING:"]
 
 [tool.mypy]
 mypy_path = "dj_shop_cart/"
@@ -97,3 +79,7 @@ allow_untyped_defs = true
 [tool.pytest.ini_options]
 addopts = "--ds=tests.settings --reuse-db"
 python_files = ["tests.py", "test_*.py"]
+
+[tool.uv.build-backend]
+module-name = "dj_shop_cart"
+module-root = ""

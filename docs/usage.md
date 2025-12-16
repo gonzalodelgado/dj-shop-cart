@@ -256,4 +256,3 @@ class Storage(Protocol):
     def clear(self) -> None:
         ...
 ```
-

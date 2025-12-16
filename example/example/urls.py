@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from core.views import add_product, decrement_product, empty_cart, index, remove_product
+from core.views import (add_product, decrement_product, empty_cart, index,
+                        remove_product)
 from django.contrib import admin
 from django.urls import path
 

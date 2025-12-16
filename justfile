@@ -2,6 +2,11 @@
 _default:
     @just --list
 
+# Install dependencies
+@bootstrap:
+    hatch env create
+    hatch env create docs
+
 # Run tests using pytest
 @test *ARGS:
     hatch run pytest {{ ARGS }}

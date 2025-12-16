@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from decimal import Decimal
+
 from django.http import HttpRequest
 
 try:
@@ -15,11 +16,8 @@ Numeric = Union[float, int, Decimal]
 class Storage(Protocol):
     request: HttpRequest
 
-    def load(self) -> dict:
-        ...
+    def load(self) -> dict: ...
 
-    def save(self, data: dict) -> None:
-        ...
+    def save(self, data: dict) -> None: ...
 
-    def clear(self) -> None:
-        ...
+    def clear(self) -> None: ...

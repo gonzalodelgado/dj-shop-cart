@@ -9,7 +9,7 @@ from django.contrib.auth.models import AnonymousUser
 from django.contrib.sessions.backends.base import SessionBase
 from django.test import RequestFactory
 
-from dj_shop_cart.cart import CartItem, get_cart, Cart
+from dj_shop_cart.cart import Cart, CartItem, get_cart
 from dj_shop_cart.modifiers import CartModifier, cart_modifiers_pool
 from dj_shop_cart.storages import DBStorage, SessionStorage
 from tests.factories import ProductFactory
@@ -113,6 +113,7 @@ def test_cart_is_empty_session_storage(cart: Cart):
 def test_cart_is_empty_db_storage(cart_db):
     cart_is_empty(cart=cart_db)
 
+
 def test_cart_empty_clear_metadata(cart: Cart):
     product = ProductFactory()
     cart.add(product=product, quantity=2, metadata={"something": 1})
@@ -120,6 +121,7 @@ def test_cart_empty_clear_metadata(cart: Cart):
     cart.empty(clear_metadata=True)
     assert cart.is_empty
     assert not cart.metadata
+
 
 def test_cart_empty_not_clear_metadata(cart: Cart):
     product = ProductFactory()
